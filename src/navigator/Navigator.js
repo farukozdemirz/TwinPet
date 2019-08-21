@@ -84,12 +84,12 @@ const AuthStackNavigator = createStackNavigator(
 );
 const AppNavigator = createSwitchNavigator(
 	{
-		Auth: AuthStackNavigator,
 		App: AppDrawerNavigator,
+		Auth: AuthStackNavigator,
 		AuthLoading: LoadingScreen
 	},
 	{
-		initialRouteName: "Auth"
+		initialRouteName: "App"
 	}
 );
 
