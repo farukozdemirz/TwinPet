@@ -226,9 +226,6 @@ export default class SwipePage extends PureComponent {
 		});
 	}
 
-	componentWillUpdate(nextState, prevState) {
-		let currentIndex = prevState.currentIndex;
-	}
 	onTouchEnd = (e, index, images, currentIndex) => {
 		let locationX = e.nativeEvent.locationX;
 
@@ -285,7 +282,7 @@ export default class SwipePage extends PureComponent {
 							(x, y) =>
 								this.state.imageIndex === y && (
 									<React.Fragment key={y}>
-										<View onTouchEndCapture={e => this.onTouchEnd(e, y, item.images, this.state.currentIndex)} style={styles.touchedView}>
+										<View onTouchEnd={e => this.onTouchEnd(e, y, item.images, this.state.currentIndex)} style={styles.touchedView}>
 											<Image style={styles.touchedImage} source={x.image} />
 											<LinearGradient colors={["transparent", "rgba(0, 0, 0, 0.5)"]} style={styles.userInformation}>
 												<View style={styles.informationTop}>
@@ -348,9 +345,18 @@ export default class SwipePage extends PureComponent {
 							(x, y) =>
 								this.state.imageIndex === y && (
 									<React.Fragment key={y}>
-										<View onTouchEndCapture={e => this.onTouchEnd(e, y, item.images, this.state.currentIndex)} style={styles.touchedView}>
+										<View onTouchEnd={e => this.onTouchEnd(e, y, item.images, this.state.currentIndex)} style={styles.touchedView}>
 											<Image style={styles.touchedImage} source={x.image} />
-											<Text style={{ fontSize: 14, color: "red" }}>sdsdsd</Text>
+											<LinearGradient colors={["transparent", "rgba(0, 0, 0, 0.5)"]} style={styles.userInformation}>
+												<View style={styles.informationTop}>
+													<Text style={styles.userName}>{item.name}</Text>
+													<Text style={styles.userAge}>{item.age}</Text>
+												</View>
+												<View style={styles.informationBottom}>
+													<EvilIcons name="location" size={20} color="#fff" />
+													<Text style={styles.userLocation}>{item.location} kilometre uzaklıkta</Text>
+												</View>
+											</LinearGradient>
 										</View>
 									</React.Fragment>
 								)
@@ -476,7 +482,8 @@ const styles = StyleSheet.create({
 	userInformation: {
 		paddingTop: 10,
 		paddingLeft: 20,
-		paddingBottom: 20
+		paddingBottom: 20,
+		borderRadius: 10
 	},
 	informationTop: {
 		flexDirection: "row",
